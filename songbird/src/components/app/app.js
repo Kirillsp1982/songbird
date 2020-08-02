@@ -2,18 +2,18 @@ import React from 'react';
 
 import Header from '../header';
 import Question from '../question';
-import Answers from '../answers';
-import Description from '../description';
+import Content from '../content';
+import NextButton from '../next-button';
 
 import './app.css';
 
 const App = () => {
   return (
-    <div>
+    <div className="grey darken-4">
       <Header />
       <Question />
-      <Answers />
-      <Description />
+      <Content />
+      <NextButton />
     </div>
   );
 };

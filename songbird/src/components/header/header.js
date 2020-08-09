@@ -7,7 +7,7 @@ const Header = () => {
       
       <div className="container">
         <div className="row valign-wrapper">
-          <p className="col s4 center-align header-logo white-text">Song<span className="green-text">bird</span></p>     
+          <p className="col s4 center-align header-logo white-text">Song<span className="green-text">Guess</span></p>     
           <p className="col s4 offset-s4 center-align white-text">Score: 25</p>
         </div>
       </div>

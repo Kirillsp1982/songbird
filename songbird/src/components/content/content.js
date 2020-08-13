@@ -5,7 +5,7 @@ import 'materialize-css';
 
 const Content = () => {
   return (
-    <div className="container row valign-wrapper">
+    <div className="container row valign-wrapper content-box">
     <Answers />
     <Description />
   </div>

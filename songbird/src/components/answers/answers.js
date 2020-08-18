@@ -3,6 +3,7 @@ import 'materialize-css';
 
 import './answers.css';
 import SongsBase from '../song-base';
+import AnswersItem from '../answers-item';
 
 const songsBase = new SongsBase;
 
@@ -22,7 +23,10 @@ export default class Answers extends Component {
     return arr.map(({id, name}) => {
       return (
 		<li key={id}>
-          <button className="btn col s12 waves-effect waves-light">{name}</button>
+		  <AnswersItem 
+		  name={name}
+		  onSelectItem={ () => this.props.onSelectItem(id) }
+		  />
         </li>
       );
     });
@@ -35,7 +39,7 @@ export default class Answers extends Component {
     const items = this.renderItems(answersList);
 
     return (
-	  <div className="col s4 grey darken-3 answers-box">
+	  <div className="col s12 m4 answers-box">
 		  <ul className="row">
 			{items}
 		  </ul>      

@@ -15,14 +15,22 @@ export default class App extends Component {
       score: 0,
 	  id: null,
 	  songNumber: Math.floor(Math.random() * (songsInBase - 1)),
+	  selectedItem: null,
     };
-	
+
+	onSelectItem1 = (id) => {
+    this.setState({
+      selectedItem: id
+    });
+  };
+  
 	render() {
+		console.log(this.state.selectedItem);
 	  return (  
-		<div className="grey darken-4 app-wrapper">
+		<div className="grey darken-4">
 		  <Header score={this.state.score} />
 		  <Question level={this.state.level} songNumber={this.state.songNumber} />
-		  <Content />
+		  <Content onSelectItem={this.onSelectItem1} selectedItem={this.state.selectedItem} />
 		  <NextButton />
 		</div>
 	  );

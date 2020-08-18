@@ -5,7 +5,7 @@ import './description.css';
 
 const Description = () => {
   return (
-    <div className="col s8 grey darken-3 white-text description-box">
+    <div className="col s12 m8 grey darken-3 white-text">
       <div className="row valign-wrapper">
       <div className="col s4">
         <img className="responsive-img" src="https://i.pinimg.com/originals/16/fd/18/16fd18892bd75297e8afef1de3709f88.jpg" alt="bird"/>

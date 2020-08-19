@@ -4,10 +4,10 @@ import Description from '../description';
 import 'materialize-css';
 import './content.css';
 
-const Content = ({ onSelectItem, selectedItem }) => {
+const Content = ({ onSelectItem, selectedItem, answersList}) => {
   return (
     <div className="container row">
-    <Answers onSelectItem={ (id) => onSelectItem(id) }/>
+    <Answers onSelectItem={ (id) => onSelectItem(id)} answersList={answersList} />
     <Description selectedItem={selectedItem} />
   </div>
   );

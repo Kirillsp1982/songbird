@@ -2,30 +2,28 @@ import React, { Component } from 'react';
 import 'materialize-css';
 
 import './answers.css';
-import SongsBase from '../song-base';
 import AnswersItem from '../answers-item';
-
-const songsBase = new SongsBase;
 
 export default class Answers extends Component {
 
   state = {
-    answersList: []
+    answersList: [],
   };
 
   componentDidMount() {
         this.setState({
-          answersList: songsBase.getResource(),
+          answersList: this.props.answersList,
         });
       }
 
   renderItems(arr) {
-    return arr.map(({id, name}) => {
+    return arr.map(({id, name, icon}) => {
       return (
 		<li key={id}>
 		  <AnswersItem 
 		  name={name}
 		  onSelectItem={ () => this.props.onSelectItem(id) }
+		  icon={icon}
 		  />
         </li>
       );

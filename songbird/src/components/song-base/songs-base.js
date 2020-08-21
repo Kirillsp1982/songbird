@@ -2,11 +2,11 @@ import songsData from './songs-data';
 let currentLevel;
 export default class SongsBase {
 
-setLevel(level) {
-	currentLevel = level;
+setLevel(level = 0) {
+	currentLevel = 0;
 }
      
 getResource() {
-	return songsData[currentLevel];
+	return songsData[0];
   }
 }

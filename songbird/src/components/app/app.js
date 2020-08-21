@@ -4,35 +4,70 @@ import Header from '../header';
 import Question from '../question';
 import Content from '../content';
 import NextButton from '../next-button';
+import SongBase from '../song-base'
 
 import './app.css';
 
 const songsInBase = 6;
-
+const songBase = new SongBase;
+const buttonsList = songBase.getResource();
 export default class App extends Component {
 	state = {
       level: 0,
       score: 0,
 	  songNumber: Math.floor(Math.random() * songsInBase),
 	  selectedItem: null,
-	  answersList: [
-	  { id: 1, name: 'Drink Coffee', icon: 'mood', isActive: true },
-	  { id: 2, name: 'Learn React', icon: 'mood_bad', isActive: true }, 
-      { id: 3, name: 'Make Awesome App', icon: 'help_outline', isActive: true }, 
-	  { id: 4, name: 'Make Awesome App', icon: 'mood', isActive: true }, 
-	  { id: 5, name: 'Make Awesome App', icon: 'mood_bad', isActive: true }, 
-	  { id: 6, name: 'Make Awesome App', icon: 'help_outline', isActive: true }, 
-	  ]
+	  answersList: []
     };
 
+	
+	  onUnActive = (id) => {
+		this.setState((state) => {
+		  //const answersList = this.toggleProperty(state.answersList, id, 'isActive');
+		const arr = state.answersList;  
+		const idx = arr.findIndex((item) => item.id === id);
+		const oldItem = arr[idx];
+	
+		const item = { ...arr[idx], isActive: false } ;
+		
+		const answersList = [
+		  ...arr.slice(0, idx),
+		  item,
+		  ...arr.slice(idx + 1)
+		];
+		  return {answersList};
+		});
+	  };
+
 	onSelectItem = (id) => {
-    this.setState({
-      selectedItem: id
-    });
+    this.setState(() => {
+      return {selectedItem: id}
+	});
+	this.onUnActive(id);
   };
   
+ 
+
+  componentWillMount() {
+    
+
+    const items = this.createItems(buttonsList);
+	
+	this.setState({
+	  answersList: items,
+	});
+  }
+
+  createItems = (arr) => {
+    return arr.map(({id, name}) => {
+      return (
+		{ id: id, name: name, icon: 'help_outline', isActive: true }
+      );
+    });
+  }
+
 	render() {
-		console.log(this.state.selectedItem);
+		console.log(this.state.answersList);
 	  return (  
 		<div className="grey darken-4">
 		  <Header score={this.state.score} />

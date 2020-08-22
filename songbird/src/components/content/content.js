@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Answers from '../answers';
 import Description from '../description';
 import 'materialize-css';
 import './content.css';
 
-const Content = ({ onSelectItem, selectedItem, answersList}) => {
-  return (
+export default class Content extends Component {
+  render() {
+    console.log('content: ', this.props.answersList);
+    return (
     <div className="container row">
-    <Answers onSelectItem={ (id) => onSelectItem(id)} answersList={answersList} />
-    <Description selectedItem={selectedItem} />
+    <Answers onSelectItem={ (id) => this.props.onSelectItem(id)} answersList={this.props.answersList} />
+    <Description selectedItem={this.props.selectedItem} />
   </div>
-  );
+  );}
 };
-
-export default Content;

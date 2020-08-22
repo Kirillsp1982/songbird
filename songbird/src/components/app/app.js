@@ -23,13 +23,13 @@ export default class App extends Component {
 	
 	  onUnActive = (id) => {
 		this.setState((state) => {
-		  //const answersList = this.toggleProperty(state.answersList, id, 'isActive');
 		const arr = state.answersList;  
 		const idx = arr.findIndex((item) => item.id === id);
-		const oldItem = arr[idx];
-	
-		const item = { ...arr[idx], isActive: false } ;
-		
+		let icon = arr[idx].icon;
+		if (arr[idx].isActive) {
+			icon = this.onChangeIcon(arr[idx].isActive, id);
+		}
+		let item = { ...arr[idx], icon: icon, isActive: false } ;
 		const answersList = [
 		  ...arr.slice(0, idx),
 		  item,
@@ -40,13 +40,16 @@ export default class App extends Component {
 	  };
 
 	onSelectItem = (id) => {
-    this.setState(() => {
+    this.setState((state) => {
       return {selectedItem: id}
 	});
 	this.onUnActive(id);
   };
   
- 
+  onChangeIcon = (isActive, id) => {
+	let icon = (id === this.state.songNumber) ? 'mood' : 'mood_bad';
+	return icon;
+  };
 
   componentWillMount() {
     
@@ -67,12 +70,13 @@ export default class App extends Component {
   }
 
 	render() {
-		console.log(this.state.answersList);
+		const {score, level, songNumber, answersList, selectedItem} = this.state;
+		console.log(answersList[songNumber].name);
 	  return (  
 		<div className="grey darken-4">
-		  <Header score={this.state.score} />
-		  <Question level={this.state.level} songNumber={this.state.songNumber} />
-		  <Content onSelectItem={this.onSelectItem} selectedItem={this.state.selectedItem} answersList={this.state.answersList}/>
+		  <Header score={score} />
+		  <Question level={level} songNumber={songNumber} />
+		  <Content onSelectItem={this.onSelectItem} selectedItem={selectedItem} answersList={answersList}/>
 		  <NextButton />
 		</div>
 	  );

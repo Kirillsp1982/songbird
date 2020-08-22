@@ -10,11 +10,27 @@ export default class Answers extends Component {
     answersList: [],
   };
 
-  componentDidMount() {
+  componentWillMount() {
         this.setState({
           answersList: this.props.answersList,
         });
       }
+
+      componentDidUpdate(prevProps) {
+        if (this.props.answersList !== prevProps.answersList) {
+          this.updateItem();
+        }
+      }
+    
+      updateItem() {
+        const { answersList } = this.props;
+        if (!answersList) {
+          return;
+        }
+        this.setState((state) => {
+          return {answersList: answersList}
+      });
+      }     
 
   renderItems(arr) {
     return arr.map(({id, name, icon}) => {
@@ -33,7 +49,6 @@ export default class Answers extends Component {
   render() {
 
     const { answersList } = this.state;
-
     const items = this.renderItems(answersList);
 
     return (

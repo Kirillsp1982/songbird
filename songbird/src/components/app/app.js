@@ -14,7 +14,8 @@ const buttonsList = songBase.getResource();
 export default class App extends Component {
 	state = {
       level: 0,
-      score: 0,
+	  score: 0,
+	  points: 5,
 	  songNumber: Math.floor(Math.random() * songsInBase),
 	  selectedItem: null,
 	  answersList: [],
@@ -30,9 +31,20 @@ export default class App extends Component {
 		if (arr[idx].isActive) {
 			icon = this.onChangeIcon(id);
 		}
-		if (id === this.state.songNumber) {
+		if (arr[idx].isActive && id !== this.state.songNumber) {
+			this.setState((state) => {
+				let newPoints = this.state.points - 1;
+				console.log(newPoints);
+				return {points: newPoints}
+			  });
+		}
+		if (arr[idx].isActive && id === this.state.songNumber) {
 			  this.setState((state) => {
-				return {isUnActiveNextButton: false}
+				  let newSore = this.state.score + this.state.points;
+				return {
+					isUnActiveNextButton: false,
+                    score: newSore
+				}
 			  });
 		}
 		let item = { ...arr[idx], icon: icon, isActive: false } ;

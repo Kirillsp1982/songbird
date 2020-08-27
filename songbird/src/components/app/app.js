@@ -17,7 +17,8 @@ export default class App extends Component {
       score: 0,
 	  songNumber: Math.floor(Math.random() * songsInBase),
 	  selectedItem: null,
-	  answersList: []
+	  answersList: [],
+	  isUnActiveNextButton: true,
     };
 
 	
@@ -27,7 +28,12 @@ export default class App extends Component {
 		const idx = arr.findIndex((item) => item.id === id);
 		let icon = arr[idx].icon;
 		if (arr[idx].isActive) {
-			icon = this.onChangeIcon(arr[idx].isActive, id);
+			icon = this.onChangeIcon(id);
+		}
+		if (id === this.state.songNumber) {
+			  this.setState((state) => {
+				return {isUnActiveNextButton: false}
+			  });
 		}
 		let item = { ...arr[idx], icon: icon, isActive: false } ;
 		const answersList = [
@@ -46,14 +52,12 @@ export default class App extends Component {
 	this.onUnActive(id);
   };
   
-  onChangeIcon = (isActive, id) => {
+  onChangeIcon = (id) => {
 	let icon = (id === this.state.songNumber) ? 'mood' : 'mood_bad';
 	return icon;
   };
 
   componentWillMount() {
-    
-
     const items = this.createItems(buttonsList);
 	
 	this.setState({
@@ -70,14 +74,14 @@ export default class App extends Component {
   }
 
 	render() {
-		const {score, level, songNumber, answersList, selectedItem} = this.state;
+		const {score, level, songNumber, answersList, selectedItem, isUnActiveNextButton} = this.state;
 		console.log(answersList[songNumber].name);
 	  return (  
 		<div className="grey darken-4">
 		  <Header score={score} />
 		  <Question level={level} songNumber={songNumber} />
 		  <Content onSelectItem={this.onSelectItem} selectedItem={selectedItem} answersList={answersList}/>
-		  <NextButton />
+		  <NextButton isUnActiveNextButton={isUnActiveNextButton}/>
 		</div>
 	  );
     }

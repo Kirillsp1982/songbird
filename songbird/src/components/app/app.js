@@ -20,6 +20,7 @@ export default class App extends Component {
 	  selectedItem: null,
 	  answersList: [],
 	  isUnActiveNextButton: true,
+	  isGuessed: false,
     };
 
 	
@@ -28,10 +29,10 @@ export default class App extends Component {
 		const arr = state.answersList;  
 		const idx = arr.findIndex((item) => item.id === id);
 		let icon = arr[idx].icon;
-		if (arr[idx].isActive) {
+		if (arr[idx].isActive && !this.state.isGuessed) {
 			icon = this.onChangeIcon(id);
 		}
-		if (arr[idx].isActive && id !== this.state.songNumber) {
+		if (arr[idx].isActive && id !== this.state.songNumber && !this.state.isGuessed) {
 			this.setState((state) => {
 				let newPoints = this.state.points - 1;
 				console.log(newPoints);
@@ -43,7 +44,8 @@ export default class App extends Component {
 				  let newSore = this.state.score + this.state.points;
 				return {
 					isUnActiveNextButton: false,
-                    score: newSore
+					score: newSore,
+					isGuessed: true
 				}
 			  });
 		}

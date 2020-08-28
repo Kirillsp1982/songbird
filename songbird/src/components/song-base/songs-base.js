@@ -1,12 +1,12 @@
 import songsData from './songs-data';
-let currentLevel;
+let currentLevel = 0;
 export default class SongsBase {
 
-setLevel(level = 0) {
-	currentLevel = 0;
+setLevel(level) {
+	currentLevel = level;
 }
      
 getResource() {
-	return songsData[0];
+	return songsData[currentLevel];
   }
 }

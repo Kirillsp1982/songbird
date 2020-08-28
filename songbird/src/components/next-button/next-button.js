@@ -10,7 +10,7 @@ const NextButton = (props) => {
   }
   return (
     <div className="container row grey darken-3">
-        <button className={buttonClass}>Next level</button>
+        <button className={buttonClass} onClick={props.onPressNextButton}>Next level</button>
     </div>
   );
 };

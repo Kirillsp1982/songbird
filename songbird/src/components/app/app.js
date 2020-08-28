@@ -10,7 +10,7 @@ import './app.css';
 
 const songsInBase = 6;
 const songBase = new SongBase;
-const buttonsList = songBase.getResource();
+let buttonsList = songBase.getResource();
 export default class App extends Component {
 	state = {
       level: 0,
@@ -25,8 +25,9 @@ export default class App extends Component {
 
 	
 	  onUnActive = (id) => {
-		this.setState((state) => {
-		const arr = state.answersList;  
+
+
+		const arr = this.state.answersList;  
 		const idx = arr.findIndex((item) => item.id === id);
 		let icon = arr[idx].icon;
 		if (arr[idx].isActive && !this.state.isGuessed) {
@@ -55,6 +56,8 @@ export default class App extends Component {
 		  item,
 		  ...arr.slice(idx + 1)
 		];
+
+		this.setState((state) => {
 		  return {answersList};
 		});
 	  };
@@ -71,12 +74,43 @@ export default class App extends Component {
 	return icon;
   };
 
+  onPressNextButton = () => {
+	  if (this.state.level < 5) {
+		  let nextLevel = this.state.level + 1;
+		  songBase.setLevel(nextLevel);
+		  buttonsList = songBase.getResource();
+		  console.log(buttonsList);
+		  this.setState((state) => {
+			return {
+				level: nextLevel,
+			}
+		  });
+	  }
+  }
+
   componentWillMount() {
     const items = this.createItems(buttonsList);
 	
 	this.setState({
 	  answersList: items,
 	});
+  }
+
+  componentDidUpdate(nexrProps, nextState) {
+	  if (nextState.level !== this.state.level) {
+    const items = this.createItems(buttonsList);
+	
+	this.setState((state) => {
+		return {
+			points: 5,
+			songNumber: Math.floor(Math.random() * songsInBase),
+			selectedItem: null,
+			answersList: items,
+			isUnActiveNextButton: true,
+			isGuessed: false,
+		}
+	  });
+}
   }
 
   createItems = (arr) => {
@@ -89,13 +123,13 @@ export default class App extends Component {
 
 	render() {
 		const {score, level, songNumber, answersList, selectedItem, isUnActiveNextButton} = this.state;
-		console.log(answersList[songNumber].name);
+		
 	  return (  
 		<div className="grey darken-4">
 		  <Header score={score} />
 		  <Question level={level} songNumber={songNumber} />
 		  <Content onSelectItem={this.onSelectItem} selectedItem={selectedItem} answersList={answersList}/>
-		  <NextButton isUnActiveNextButton={isUnActiveNextButton}/>
+		  <NextButton isUnActiveNextButton={isUnActiveNextButton} onPressNextButton={this.onPressNextButton}/>
 		</div>
 	  );
     }

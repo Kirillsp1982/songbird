@@ -3,10 +3,14 @@ import 'materialize-css';
 
 import './next-button.css';
 
-const NextButton = () => {
+const NextButton = (props) => {
+  let buttonClass = "btn waves-effect waves-light col s12";
+  if (props.isUnActiveNextButton) {
+    buttonClass += ' disabled';
+  }
   return (
     <div className="container row grey darken-3">
-        <button className="btn waves-effect waves-light col s12">Next level</button>
+        <button className={buttonClass} onClick={props.onPressNextButton}>Next level</button>
     </div>
   );
 };

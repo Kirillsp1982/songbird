@@ -79,7 +79,6 @@ export default class App extends Component {
 		  let nextLevel = this.state.level + 1;
 		  songBase.setLevel(nextLevel);
 		  buttonsList = songBase.getResource();
-		  console.log(buttonsList);
 		  this.setState((state) => {
 			return {
 				level: nextLevel,
@@ -123,7 +122,7 @@ export default class App extends Component {
 
 	render() {
 		const {score, level, songNumber, answersList, selectedItem, isUnActiveNextButton} = this.state;
-		
+		console.log(answersList[songNumber].name);
 	  return (  
 		<div className="grey darken-4">
 		  <Header score={score} />

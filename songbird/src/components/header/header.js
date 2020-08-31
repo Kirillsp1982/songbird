@@ -15,22 +15,22 @@ const Header = (props) => {
       
       <ul className="row teal lighten-2 white-text center-align">
         <li className="col s6 m4 l2 hoverable">
-          <p>Разминка</p>
+          <p>Русский рок</p>
         </li>
         <li className="col s6 m4 l2 hoverable">
-          <p>Воробьиные</p>
+          <p>Зарубежный рок</p>
         </li>
         <li className="col s6 m4 l2 hoverable">
-          <p>Лесные птицы</p>
+          <p>Русский поп</p>
         </li>
         <li className="col s6 m4 l2 hoverable">
-          <p>Певчие птицы</p>
+          <p>Русские мульт</p>
         </li>
         <li className="col s6 m4 l2 hoverable">
-          <p>Хищные птицы</p>
+          <p>Зарубежные мульт</p>
         </li>
         <li className="col s6 m4 l2 hoverable">
-          <p>Морские птицы</p>
+          <p>Военные песни</p>
         </li>
       </ul>
       

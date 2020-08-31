@@ -6,7 +6,6 @@ import './content.css';
 
 export default class Content extends Component {
   render() {
-    console.log('content: ', this.props.answersList);
     return (
     <div className="container row">
     <Answers onSelectItem={ (id) => this.props.onSelectItem(id)} answersList={this.props.answersList} />

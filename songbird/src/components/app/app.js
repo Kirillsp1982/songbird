@@ -21,6 +21,7 @@ export default class App extends Component {
 	  answersList: [],
 	  isUnActiveNextButton: true,
 	  isGuessed: false,
+	  itemDescription: null,
     };
 
 	
@@ -36,7 +37,6 @@ export default class App extends Component {
 		if (arr[idx].isActive && id !== this.state.songNumber && !this.state.isGuessed) {
 			this.setState((state) => {
 				let newPoints = this.state.points - 1;
-				console.log(newPoints);
 				return {points: newPoints}
 			  });
 		}
@@ -64,7 +64,10 @@ export default class App extends Component {
 
 	onSelectItem = (id) => {
     this.setState((state) => {
-      return {selectedItem: id}
+      return {
+		  selectedItem: id,
+		  itemDescription: buttonsList[id],
+		  }
 	});
 	this.onUnActive(id);
   };
@@ -82,6 +85,7 @@ export default class App extends Component {
 		  this.setState((state) => {
 			return {
 				level: nextLevel,
+				itemDescription: null,
 			}
 		  });
 	  }
@@ -121,13 +125,13 @@ export default class App extends Component {
   }
 
 	render() {
-		const {score, level, songNumber, answersList, selectedItem, isUnActiveNextButton} = this.state;
+		const {score, level, songNumber, answersList, itemDescription, isUnActiveNextButton} = this.state;
 		console.log(answersList[songNumber].name);
 	  return (  
 		<div className="grey darken-4">
 		  <Header score={score} />
 		  <Question level={level} songNumber={songNumber} />
-		  <Content onSelectItem={this.onSelectItem} selectedItem={selectedItem} answersList={answersList}/>
+		  <Content onSelectItem={this.onSelectItem} itemDescription={itemDescription} answersList={answersList}/>
 		  <NextButton isUnActiveNextButton={isUnActiveNextButton} onPressNextButton={this.onPressNextButton}/>
 		</div>
 	  );

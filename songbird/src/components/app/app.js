@@ -125,12 +125,12 @@ export default class App extends Component {
   }
 
 	render() {
-		const {score, level, songNumber, answersList, itemDescription, isUnActiveNextButton} = this.state;
+		const {score, level, songNumber, answersList, itemDescription, isUnActiveNextButton, isGuessed} = this.state;
 		console.log(answersList[songNumber].name);
 	  return (  
 		<div className="grey darken-4">
 		  <Header score={score} />
-		  <Question level={level} songNumber={songNumber} />
+		  <Question level={level} songNumber={songNumber} isGuessed={isGuessed}/>
 		  <Content onSelectItem={this.onSelectItem} itemDescription={itemDescription} answersList={answersList}/>
 		  <NextButton isUnActiveNextButton={isUnActiveNextButton} onPressNextButton={this.onPressNextButton}/>
 		</div>

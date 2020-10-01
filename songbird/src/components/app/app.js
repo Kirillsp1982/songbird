@@ -129,7 +129,7 @@ export default class App extends Component {
 		console.log(answersList[songNumber].name);
 	  return (  
 		<div className="grey darken-4">
-		  <Header score={score} />
+		  <Header level={level} score={score} />
 		  <Question level={level} songNumber={songNumber} isGuessed={isGuessed}/>
 		  <Content onSelectItem={this.onSelectItem} itemDescription={itemDescription} answersList={answersList}/>
 		  <NextButton isUnActiveNextButton={isUnActiveNextButton} onPressNextButton={this.onPressNextButton}/>

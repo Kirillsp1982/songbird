@@ -9,7 +9,7 @@ export default class Content extends Component {
     return (
     <div className="container row">
     <Answers onSelectItem={ (id) => this.props.onSelectItem(id)} answersList={this.props.answersList} />
-    <Description selectedItem={this.props.selectedItem} />
+    <Description itemDescription={this.props.itemDescription} />
   </div>
   );}
 };

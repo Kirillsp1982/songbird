@@ -25,8 +25,15 @@ export default class App extends Component {
     };
 
 	
-	  onUnActive = (id) => {
+	wrongSound = () =>{
+		new Audio('../../assets/audio/wrong.mp3').play();
+	}
 
+	correctSound = () =>{
+		new Audio('../../assets/audio/correct.mp3').play();
+	}
+	
+	  onUnActive = (id) => {
 
 		const arr = this.state.answersList;  
 		const idx = arr.findIndex((item) => item.id === id);
@@ -37,12 +44,14 @@ export default class App extends Component {
 		if (arr[idx].isActive && id !== this.state.songNumber && !this.state.isGuessed) {
 			this.setState((state) => {
 				let newPoints = this.state.points - 1;
+				this.wrongSound();
 				return {points: newPoints}
 			  });
 		}
 		if (arr[idx].isActive && id === this.state.songNumber) {
 			  this.setState((state) => {
 				  let newSore = this.state.score + this.state.points;
+				  this.correctSound();
 				return {
 					isUnActiveNextButton: false,
 					score: newSore,

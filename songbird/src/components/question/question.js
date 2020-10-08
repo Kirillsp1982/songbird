@@ -19,6 +19,7 @@ export default class Question extends Component {
     if (isGuessed) {
       songName = <h4>{currentItem.name}</h4>;
 	  songImg = currentItem.image;
+	  document.querySelector('#questionPlayer').pause();
     } else {
       songName = <h4>********</h4>;
 	  songImg = '../../assets/img/guess.jpg';
@@ -36,6 +37,7 @@ export default class Question extends Component {
 	  <audio
         controls
         autoPlay
+		id='questionPlayer'
         src={ currentItem.audio }>
             Your browser does not support the
             <code>audio</code> element.

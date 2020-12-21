@@ -4,7 +4,8 @@ import 'materialize-css';
 import './question.css';
 
 import SongsBase from '../song-base';
-
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 const songsBase = new SongsBase;
 
 export default class Question extends Component {
@@ -19,7 +20,7 @@ export default class Question extends Component {
     if (isGuessed) {
       songName = <h4>{currentItem.name}</h4>;
 	  songImg = currentItem.image;
-	  document.querySelector('#questionPlayer').pause();
+	  document.querySelector('audio').pause();
     } else {
       songName = <h4>********</h4>;
 	  songImg = '../../assets/img/guess.jpg';
@@ -34,14 +35,12 @@ export default class Question extends Component {
 	  {songName}
         <div className="divider"></div>
         <div>		
-	  <audio
-        controls
+	      <AudioPlayer
         autoPlay
-		id='questionPlayer'
-        src={ currentItem.audio }>
-            Your browser does not support the
-            <code>audio</code> element.
-    </audio>
+    src={ currentItem.audio }
+  />
+
+
 		</div>
       </div>
     </div>

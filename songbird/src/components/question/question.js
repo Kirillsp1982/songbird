@@ -40,7 +40,6 @@ export default class Question extends Component {
 	      <AudioPlayer
           autoPlay
           showJumpControls={false}
-          customVolumeControls={[]}
           customAdditionalControls={[]}
           layout="horizontal-reverse"
           src={ currentItem.audio }

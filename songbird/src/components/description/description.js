@@ -34,7 +34,6 @@ const Description = (props) => {
         <AudioPlayer
           showJumpControls={false}
           customAdditionalControls={[]}
-          customVolumeControls={[]}
           layout="horizontal-reverse"
           src={ props.itemDescription.audio }
         />

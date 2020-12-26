@@ -32,8 +32,12 @@ const Description = (props) => {
         <div className="divider"></div>
         <div>
         <AudioPlayer
-    src={ props.itemDescription.audio }
-  />
+          showJumpControls={false}
+          customAdditionalControls={[]}
+          customVolumeControls={[]}
+          layout="horizontal-reverse"
+          src={ props.itemDescription.audio }
+        />
 	    </div>
       </div>
       </div>

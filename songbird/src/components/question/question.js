@@ -6,6 +6,8 @@ import './question.css';
 import SongsBase from '../song-base';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+
+
 const songsBase = new SongsBase;
 
 export default class Question extends Component {
@@ -36,9 +38,13 @@ export default class Question extends Component {
         <div className="divider"></div>
         <div>		
 	      <AudioPlayer
-        autoPlay
-    src={ currentItem.audio }
-  />
+          autoPlay
+          showJumpControls={false}
+          customVolumeControls={[]}
+          customAdditionalControls={[]}
+          layout="horizontal-reverse"
+          src={ currentItem.audio }
+        />
 
 
 		</div>

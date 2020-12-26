@@ -2,6 +2,8 @@ import React from 'react';
 import 'materialize-css';
 
 import './description.css';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 const Description = (props) => {
 	if (props.itemDescription === null) {
@@ -29,12 +31,13 @@ const Description = (props) => {
         <p>{props.itemDescription.species}</p>
         <div className="divider"></div>
         <div>
-		<audio
-        controls
-        src={ props.itemDescription.audio }>
-            Your browser does not support the
-            <code>audio</code> element.
-        </audio>
+        <AudioPlayer
+          showJumpControls={false}
+          customAdditionalControls={[]}
+          customVolumeControls={[]}
+          layout="horizontal-reverse"
+          src={ props.itemDescription.audio }
+        />
 	    </div>
       </div>
       </div>

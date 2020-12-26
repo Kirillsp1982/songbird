@@ -11,12 +11,20 @@
     color: #26a69a;
 }
 
+.rhap_main-controls-button:focus {
+    background-color: #424242;
+}
+
 .rhap_progress-indicator {
     background: #26a69a;
 }
 
 .rhap_volume-button {
     color: #26a69a;
+}
+
+.rhap_volume-button:focus {
+    background-color: #424242;
 }
 
 .rhap_volume-indicator {
